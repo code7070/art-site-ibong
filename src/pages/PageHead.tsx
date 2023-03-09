@@ -1,10 +1,17 @@
 import Head from "next/head";
+import { FunctionComponent } from "react";
 
-export default function PageHead({
-  title = "Next TS starter by Jojo",
-  description = "Next TS Starter by Jojo",
+interface PageHeadProps {
+  title?: string;
+  description?: string;
+  icon?: string;
+}
+
+const PageHead: FunctionComponent<PageHeadProps> = ({
+  title = "Next-TS by Jojo",
+  description = "This is NextJS with TS starter by Jojo",
   icon = "/favicon.ico",
-}) {
+}) => {
   return (
     <Head>
       <title>{title}</title>
@@ -13,4 +20,6 @@ export default function PageHead({
       <link rel="icon" href={icon} />
     </Head>
   );
-}
+};
+
+export default PageHead;
