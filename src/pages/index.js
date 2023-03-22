@@ -1,13 +1,8 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import PageHead from "./PageHead";
 import { Client } from "@notionhq/client";
 import HomeCover from "@/sections/home/cover";
 import ArtSection from "@/components/art-section";
 import WorkThumbnail from "@/components/work-thumbnail";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const notion = new Client({ auth: process.env.notion });
 
@@ -16,10 +11,10 @@ export async function getStaticProps() {
     database_id: "ec7b8a349e664dafaf8f0e77c376072a",
   });
 
-  let works = results.map((i) => ({
-    name: i.properties.Name.title[0].plain_text,
-    category: i.properties.category?.select?.name || null,
-    image: i.properties.image.files[0].file.url,
+  let works = results.map(({ properties }) => ({
+    name: properties.Name.title[0].plain_text,
+    category: properties.category?.select?.name || null,
+    image: properties.image.files[0].file.url,
   }));
 
   return {

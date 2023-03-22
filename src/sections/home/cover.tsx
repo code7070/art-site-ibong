@@ -1,6 +1,4 @@
-import ArtSection from "@/components/art-section";
 import Image from "next/image";
-import style from "./home.module.scss";
 
 export default function HomeCover() {
   return (
