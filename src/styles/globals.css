@@ -17,6 +17,7 @@ body {
   background: url("/images/bg-shade.jpg");
   background-size: contain;
   color: #333;
+  padding-bottom: 70px;
 }
 
 .wrapper {
