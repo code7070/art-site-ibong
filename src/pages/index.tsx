@@ -2,117 +2,59 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import PageHead from "./PageHead";
+import { Client } from "@notionhq/client";
+import HomeCover from "@/sections/home/cover";
+import ArtSection from "@/components/art-section";
+import WorkThumbnail from "@/components/work-thumbnail";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+const notion = new Client({ auth: process.env.notion });
+
+export async function getStaticProps() {
+  const { results } = await notion.databases.query({
+    database_id: "ec7b8a349e664dafaf8f0e77c376072a",
+  });
+
+  let works = results.map((i) => ({
+    name: i.properties.Name.title[0].plain_text,
+    category: i.properties.category?.select?.name || null,
+    image: i.properties.image.files[0].file.url,
+  }));
+
+  return {
+    props: { raw: results, works: works },
+  };
+}
+
+export default function Home(props = { works: [] }) {
+  const { works } = props;
+  console.log(props);
+
+  const artwork = works.filter(({ category }) => category === "Art Work");
+  const trusted = works.filter(
+    ({ category }) => `${category}`.toLowerCase() === "trusted by"
+  );
+
   return (
     <>
       <PageHead />
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
+      <section>
+        <HomeCover />
+        <div className="wrapper">
+          <ArtSection
+            title="ArtWork"
+            description="created with visual and special messages"
+          >
+            <div className="grid grid-cols-2 gap-3">
+              {artwork.map(({ name, category, image }) => (
+                <WorkThumbnail key={name} name={name} image={image} />
+              ))}
+            </div>
+          </ArtSection>
+          <ArtSection title=""></ArtSection>
         </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      </section>
     </>
   );
 }
