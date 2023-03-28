@@ -16,9 +16,10 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
+      "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/notion.js"],
   "exclude": ["node_modules"]
 }

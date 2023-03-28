@@ -1,0 +1,40 @@
+// HOME COVER SECTION
+.notion-row.notion-block-058bc31abc1b40c8976ab54ae79e28d9 {
+  align-items: center;
+  padding: 40px 0;
+}
+
+// COVER IMAGE
+.notion-asset-wrapper.notion-asset-wrapper-image.notion-block-4ab279c855354eb69ffd704fe23fa213 {
+  div {
+    height: 300px;
+  }
+}
+
+// COVER TEXT
+.notion-text.notion-block-f1b28b2da47044d8a4267e4c15d85c98,
+.notion-text.notion-block-e7cd8acf4734439080207bd8be685e47 {
+  @apply text-base md:text-xl;
+}
+
+.notion-row.notion-block-3036793509e9478a86d8882145b75f5f {
+  @apply mt-5;
+
+  // FOR BUTTON
+  .notion-quote.notion-block-3ed85f53d58e4263964e81c89919baaf,
+  .notion-quote.notion-block-45a8b2f08ca541f3aba88968c174b4eb {
+    border-left: none;
+    padding: 0;
+
+    div {
+      display: inline-block;
+      width: auto;
+    }
+
+    div a {
+      padding: 8px 28px;
+      background: #000;
+      color: #fff;
+    }
+  }
+}

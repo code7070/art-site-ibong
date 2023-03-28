@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: url("/images/bg-shade.jpg");
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: top center;
+  color: #333333;
+  padding-bottom: 70px;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 320px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* REACT-NOTION-X CONFIGURATION */
+
+// .notion-callout {
+//   display: flex;
+//   align-items: center;
+
+//   &.notion-gray_background_co {
+//     .notion-page-icon-inline {
+//       display: none;
+//     }
+
+//     .notion-callout-text {
+//       margin: 0 auto;
+//     }
+//   }
+// }
+
+h1,
+h2,
+h3,
+h4,
+.notion-h {
+  display: block;
+  margin: 0;
+
+  .notion-hash-link {
+    display: none;
+  }
+}
+
+.notion {
+  font-family: inherit !important;
+}
+
+.notion-page {
+  width: 100%;
+}
+
+.notion-callout {
+  &.notion-gray_background_co {
+    .notion-page-icon-inline {
+      display: none;
+    }
+
+    .notion-callout-text {
+      margin: 0 auto;
+    }
+  }
+}
