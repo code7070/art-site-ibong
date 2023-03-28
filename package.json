@@ -16,6 +16,8 @@
     "daisyui": "^2.51.3",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "next": "13.2.3",
     "notion-client": "^6.16.0",
     "notion-utils": "^6.16.0",
@@ -27,7 +29,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
-    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-tailwindcss": "^3.10.1",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
