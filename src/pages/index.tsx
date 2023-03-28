@@ -1,42 +1,42 @@
 import PageHead from "./PageHead";
-import { Client } from "@notionhq/client";
+// import { Client } from "@notionhq/client";
 import HomeCover from "@/sections/home/cover";
-import ArtSection from "@/components/art-section";
-import WorkThumbnail from "@/components/work-thumbnail";
+// import ArtSection from "@/components/art-section";
+// import WorkThumbnail from "@/components/work-thumbnail";
 
-const notion = new Client({ auth: process.env.notion });
+// const notion = new Client({ auth: process.env.notion });
 
-export async function getStaticProps() {
-  const { results } = await notion.databases.query({
-    database_id: "ec7b8a349e664dafaf8f0e77c376072a",
-  });
+// export async function getStaticProps() {
+//   const { results } = await notion.databases.query({
+//     database_id: "ec7b8a349e664dafaf8f0e77c376072a",
+//   });
 
-  let works = results.map(({ properties }) => ({
-    name: properties.Name.title[0].plain_text,
-    category: properties.category?.select?.name || null,
-    image: properties.image.files[0].file.url,
-  }));
+//   let works = results.map(({ properties }) => ({
+//     name: properties.Name.title[0].plain_text,
+//     category: properties.category?.select?.name || null,
+//     image: properties.image.files[0].file.url,
+//   }));
 
-  return {
-    props: { raw: results, works: works },
-  };
-}
+//   return {
+//     props: { raw: results, works: works },
+//   };
+// }
 
 export default function Home(props = { works: [] }) {
-  const { works } = props;
-  console.log(props);
+  // const { works } = props;
+  // console.log(props);
 
-  const artwork = works.filter(({ category }) => category === "Art Work");
-  const trusted = works.filter(
-    ({ category }) => `${category}`.toLowerCase() === "trusted by"
-  );
+  // const artwork = works.filter(({ category }) => category === "Art Work");
+  // const trusted = works.filter(
+  //   ({ category }) => `${category}`.toLowerCase() === "trusted by"
+  // );
 
   return (
     <>
       <PageHead />
       <section>
         <HomeCover />
-        <div className="wrapper">
+        {/* <div className="wrapper">
           <ArtSection
             title="ArtWork"
             description="created with visual and special messages"
@@ -48,7 +48,7 @@ export default function Home(props = { works: [] }) {
             </div>
           </ArtSection>
           <ArtSection title=""></ArtSection>
-        </div>
+        </div> */}
       </section>
     </>
   );
