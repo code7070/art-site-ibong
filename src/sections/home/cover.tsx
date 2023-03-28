@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HomeCover() {
   return (
-    <div className="wrapper">
+    <div>
       <div className="relative mb-14 pt-16">
         <div className="relative mx-auto mb-6 aspect-[4/3]">
           <h1 className="hidden">IDO</h1>
